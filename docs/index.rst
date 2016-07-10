@@ -56,6 +56,8 @@ Contents:
 
    setup
    api/modules
+   gallery/gallery
+   tutorials/tutorials
 
 
 
