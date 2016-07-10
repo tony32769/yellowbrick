@@ -51,6 +51,8 @@ yellowbrick.regressor module
     :members:
     :undoc-members:
     :show-inheritance:
+    :private-members:
+    :special-members:
 
 yellowbrick.utils module
 ------------------------

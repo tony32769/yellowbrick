@@ -42,6 +42,13 @@ class PredictionError(MultiModelMixin, RegressorVisualization):
     def __init__(self, models, **kwargs):
         """
         Pass in a collection of models to generate prediction error graphs.
+
+        :param models: One or many regression models to generate prediction error graphs on.
+        :type models: a list of estimators, each estimator being a subclass of :py:class:`sklearn.models.BaseEstimator` that derives from :py:class:`sklearn.base.RegressorMixin`
+        :param point_color: hex code defining color for points on plot
+        :type point_color: str (optional)
+        :param line_color: hex code defining color for line on plot
+        :type line_color: str (optional)
         """
         super(PredictionError, self).__init__(models, **kwargs)
 
@@ -52,7 +59,15 @@ class PredictionError(MultiModelMixin, RegressorVisualization):
 
     def render(self, X, y):
         """
-        Renders each of the scatter plots per matrix.
+        Renders each of the scatter plots per model.
+
+        :param X: Full dataframe or array (without targets if sending supervised data)
+        :type X: :py:class:`pandas.DataFrame` or :py:class:`numpy.Array`
+        :param y: Target feature(s)
+        :type y: :py:class:`pandas.Series` or :py:class:`numpy.Array` depending on type of X
+        :return: Axes objects containing all subplots made for this(/these) regressor(s)
+        :rtype: :py:class:`matplotlib.axes.Axes`
+
         """
         for idx, (axe, y_pred) in enumerate(zip(self.generate_subplots(), self.predict(X, y))):
             # Set the x and y limits
@@ -78,6 +93,12 @@ def peplot(models, X, y, **kwargs):
     """
     Take in the model, data and labels as input and generate a multi-plot of
     the prediction error for each model.
+
+    :param X: Full dataframe or array (without targets if sending supervised data)
+    :type X: :py:class:`pandas.DataFrame` or :py:class:`numpy.Array`
+    :param y: Target feature(s)
+    :type y: :py:class:`pandas.Series` or :py:class:`numpy.Array` depending on type of X
+    :param kwargs: Extra keyword arguments to send to the :py:class:`.PredictionError` object.
     """
     viz = PredictionError(models, **kwargs)
     return viz.render(X, y)
@@ -91,7 +112,8 @@ class ResidualsPlot(MultiModelMixin, RegressorVisualization):
     Unlike PredictionError, this viz takes classes instead of model instances
     we should revise the API to have FittedRegressorVisualization vs. etc.
 
-    TODO: Fitted vs. Unfitted API.
+    .. todo::
+        * TODO: Fitted vs. Unfitted API? Refactor if we are going to before docs. (https://github.com/DistrictDataLabs/yellowbrick/issues/37)
     """
 
     def __init__(self, models, **kwargs):

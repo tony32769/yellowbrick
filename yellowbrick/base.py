@@ -27,7 +27,7 @@ from sklearn.cross_validation import cross_val_predict as cvp
 class BaseVisualization(object):
     """
     The root of the visual object hierarchy that defines how yellowbrick
-    creates, stores, and renders visual artifcats using matplotlib.
+    creates, stores, and renders visual artifacts using matplotlib.
     """
 
     def render(self):
@@ -41,22 +41,46 @@ class BaseVisualization(object):
 
 class FeatureVisualization(BaseVisualization, BaseEstimator, TransformerMixin):
     """
-    A feature visualization class accepts as input a DataFrame or Numpy array
+    A feature visualization class accepts as input a DataFrame or Numpy array to its :py:meth:`.fit` method
     in order to investigate features individually or together.
 
     FeatureVisualization is itself a transformer so that it can be used in
     a Scikit-Learn Pipeline to perform automatic visual analysis during build.
     """
 
+    # TODO: should we add __init__ to the interface?
+
     def fit(self, X, y=None, **kwargs):
+        """
+        This FeatureVisualization subclass' :py:meth:`.fit` method which to extends scikit-learn's :py:meth:`sklearn.base.TransformerMixin.fit_transform` paradigm.
+
+        :param X: Full dataframe or array (without targets if sending supervised data)
+        :type X: :py:class:`pandas.DataFrame` or :py:class:`numpy.Array`
+        :param y: Target feature(s)
+        :type y: :py:class:`pandas.Series` or :py:class:`numpy.Array` depending on type of X
+        :param kwargs:
+        :return:
+        :rtype:
+        """
         pass
 
     def transform(self, X):
+        """
+        This FeatureVisualization subclass' :py:meth:`.transform` method which to extends scikit-learn's :py:meth:`sklearn.base.TransformerMixin.fit_transform` paradigm.
+
+
+        :param X:
+        :return:
+        """
         pass
 
-    def render(self, data=None):
+    def render(self, *args, **kwargs):
         """
         A feature visualization renders data.
+
+        Each individual subclass determines what arguments it needs to
+        render the feature visualization.
+
         """
         raise NotImplementedError(
             "Please specify how to render the feature visualization"
@@ -65,10 +89,12 @@ class FeatureVisualization(BaseVisualization, BaseEstimator, TransformerMixin):
 
 class ModelVisualization(BaseVisualization, BaseEstimator):
     """
-    A model visualization class accepts as input a Scikit-Learn estimator(s)
+    A model visualization class should accept as input a Scikit-Learn estimator(s)
     and is itself an estimator (to be included in a Pipeline) in order to
     visualize the efficacy of a particular fitted model.
     """
+
+    #TODO: should we add __init__ to the interface?
 
     def fit(self, X, y=None, **kwargs):
         pass

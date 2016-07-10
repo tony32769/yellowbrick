@@ -44,6 +44,11 @@ class ClassifierReport(ClassifierVisualization):
     """
     Classification report that shows the precision, recall, and F1 scores
     for the model. Integrates numerical scores as well color-coded heatmap.
+
+    .. todo::
+
+        * TODO: Implement for multiple models (https://github.com/DistrictDataLabs/yellowbrick/issues/32)
+
     """
 
     def __init__(self, model, **kwargs):
@@ -135,6 +140,11 @@ class ROCAUC(MultiModelMixin, ClassifierVisualization):
     """
     Plot the ROC to visualize the tradeoff between the classifier's
     sensitivity and specificity.
+
+    .. todo::
+
+        * TODO: Fitted vs. Unfitted API? Refactor if we are going to before docs. (https://github.com/DistrictDataLabs/yellowbrick/issues/37)
+
     """
     def __init__(self, models, **kwargs):
         """

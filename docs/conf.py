@@ -36,6 +36,7 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
+    'sphinx.ext.todo',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -118,7 +119,7 @@ pygments_style = 'sphinx'
 # keep_warnings = False
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
-todo_include_todos = False
+todo_include_todos = True
 
 
 # -- Options for HTML output ----------------------------------------------
@@ -345,4 +346,6 @@ intersphinx_mapping = {'python': ('https://docs.python.org/3', None),
                        'scipy': ('http://scipy.github.io/devdocs/', None),
                        'numpy': ('https://docs.scipy.org/doc/numpy-dev/', None),
                        'cycler': ('http://matplotlib.org/cycler/', None),
-                       'seaborn': ('https://web.stanford.edu/~mwaskom/software/seaborn/', None)}
+                       'seaborn': ('https://web.stanford.edu/~mwaskom/software/seaborn/', None),
+                       'pandas': ('http://pandas.pydata.org/pandas-docs/version/0.18.1/', None),
+                       'sklearn': ('http://scikit-learn.org/stable/', None)}
