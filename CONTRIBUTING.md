@@ -97,6 +97,7 @@ You can work directly in your fork and create a pull request from your fork's de
 
 ``
 $ git remote add upstream https://github.com/DistrictDataLabs/yellowbrick.git
+
 $ git remote -v
 origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
 origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
